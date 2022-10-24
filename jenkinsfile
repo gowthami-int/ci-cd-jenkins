@@ -1,0 +1,21 @@
+pipeline{
+    agent any
+    stages{
+         stage('fetch code'){
+          steps{
+          git branch: 'main', changelog: false, poll: false, url: 'https://github.com/gowthami-int/ci-cd-jenkins.git'
+}
+}
+ stage('Install and configure Apache'){
+          steps{
+         sh 'sudo apt install apache2 -y'
+}
+}
+
+stage('Deploy application'){
+          steps{
+          sh 'sudo cp -R . /var/www/html/'
+}
+}
+}
+}
